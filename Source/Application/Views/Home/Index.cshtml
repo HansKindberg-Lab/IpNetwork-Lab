@@ -1,0 +1,60 @@
+﻿@model HomeViewModel
+<div class="card alert-danger">
+	<div class="card-header">
+		<h1 class="h4 m-0 p-0">
+			IpNetwork-lab
+		</h1>
+	</div>
+	<div class="card-body">
+		<p>Information, information, information, information.</p>
+		<partial name="ValidationSummary" />
+		<form method="post">
+			<div class="mb-3">
+				<label asp-for="IpNetworkInput">IP-network</label>
+				<input aria-describedby="ip-network-help" asp-for="IpNetworkInput" class="form-control" placeholder="127.0.0.1/32" />
+				<div id="ip-network-help" class="form-text">Eg. 127.0.0.1/0 (min) or 127.0.0.1/32 (max).</div>
+			</div>
+			<div class="mb-3">
+				<label asp-for="IpAddressInput">IP-address</label>
+				<input aria-describedby="ip-address-help" asp-for="IpAddressInput" class="form-control" id="ip-address-input" placeholder="127.0.0.1" />
+				<div id="ip-address-help" class="form-text">The IP-address will be used to check if it exists in the IP-network.</div>
+			</div>
+			<div class="text-end">
+				<button class="btn btn-primary" type="submit">Submit</button>
+			</div>
+		</form>
+		@if(Model.IpNetwork != null)
+		{
+			<h2 class="h5">IP-network</h2>
+			<ul>
+				<li>Address family: <strong>@Model.IpNetwork.AddressFamily</strong></li>
+				<li>Broadcast: <strong>@Model.IpNetwork.Broadcast</strong></li>
+				<li>Cidr: <strong>@Model.IpNetwork.Cidr</strong></li>
+				<li>Netmask: <strong>@Model.IpNetwork.Netmask</strong></li>
+				<li>Network: <strong>@Model.IpNetwork.Network</strong></li>
+				<li>Wildcard mask: <strong>@Model.IpNetwork.WildcardMask</strong></li>
+				<li>First usable: <strong>@Model.IpNetwork.FirstUsable</strong></li>
+				<li>Last usable: <strong>@Model.IpNetwork.LastUsable</strong></li>
+				<li>Total number of usable IP-addresses: <strong>@Model.IpNetwork.Usable</strong></li>
+				<li>Total number of IP-addresses: <strong>@Model.IpNetwork.Total</strong></li>
+			</ul>
+		}
+		@if(Model.IpAddress != null && Model.IpNetwork != null)
+		{
+			<h2 class="h5">IP-address</h2>
+			var contained = Model.IpNetwork.Contains(Model.IpAddress);
+			if(contained)
+			{
+				<div class="alert alert-success">
+					The ip-network @Model.IpNetworkInput contains the ip-address @Model.IpAddressInput.
+				</div>
+			}
+			else
+			{
+				<div class="alert alert-danger">
+					The ip-network @Model.IpNetworkInput does NOT contain the ip-address @Model.IpAddressInput.
+				</div>
+			}
+		}
+	</div>
+</div>
