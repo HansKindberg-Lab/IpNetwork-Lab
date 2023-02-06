@@ -11,8 +11,8 @@
 		<form method="post">
 			<div class="mb-3">
 				<label asp-for="IpNetworkInput">IP-network</label>
-				<input aria-describedby="ip-network-help" asp-for="IpNetworkInput" class="form-control" placeholder="127.0.0.1/32" />
-				<div id="ip-network-help" class="form-text">Eg. 127.0.0.1/0 (min) or 127.0.0.1/32 (max).</div>
+                <input aria-describedby="ip-network-help" asp-for="IpNetworkInput" class="form-control" placeholder="127.0.0.0/24" />
+				<div id="ip-network-help" class="form-text">Eg. 127.0.0.0/0 (min) or 127.0.0.0/32 (max).</div>
 			</div>
 			<div class="mb-3">
 				<label asp-for="IpAddressInput">IP-address</label>
