@@ -1,6 +1,6 @@
 # IpNetwork-Lab
 
-This is a web-application for laborating wiht IP-networks.
+This is a web-application for laborating with IP-networks.
 
 ## Links
 
